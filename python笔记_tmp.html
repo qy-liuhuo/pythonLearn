@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>python笔记.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///d%3A/project/typora-themes/dark/typora-ayu-mirage.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="%E7%9B%AE%E5%BD%95">目录</h2>
+<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#p1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B">p1 为什么要学习编程</a></li>
+<li><a href="#p2-%E7%A8%8B%E5%BA%8F%E6%98%AF%E4%BB%80%E4%B9%88">p2 程序是什么</a></li>
+<li><a href="#p3-python%E5%8E%86%E5%8F%B2%E5%8F%8A%E7%8E%B0%E7%8A%B6">p3 python历史及现状</a></li>
+<li><a href="#p4-%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83">p4 运行环境</a></li>
+<li><a href="#p5-pycharm%E4%BB%8B%E7%BB%8D">p5 pycharm介绍</a></li>
+<li><a href="#p6-%E7%AC%AC%E4%B8%80%E4%B8%AApython%E7%A8%8B%E5%BA%8F">p6 第一个python程序</a></li>
+<li><a href="#p7-%E4%B8%8A%E6%9C%BA%E7%BB%83%E4%B9%A0">p7 上机练习</a></li>
+<li><a href="#p8-python%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E9%A3%8E%E6%A0%BC">p8 Python程序设计风格</a></li>
+<li><a href="#p9%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1%E5%8F%8A%E5%85%B6%E7%BB%84%E7%BB%87">p9数据对象及其组织</a>
+<ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%BD%92%E7%BA%B3">数据类型归纳</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F">数据组织方式</a></li>
+</ul>
+</li>
+<li><a href="#p10-%E8%AE%A1%E7%AE%97%E5%92%8C%E6%8E%A7%E5%88%B6%E6%B5%81">p10 计算和控制流</a>
+<ul>
+<li><a href="#%E8%BF%90%E7%AE%97%E8%AF%AD%E5%8F%A5">运算语句</a></li>
+<li><a href="#%E6%8E%A7%E5%88%B6%E6%B5%81%E8%AF%AD%E5%8F%A5">控制流语句</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5">定义语句</a></li>
+</ul>
+</li>
+<li><a href="#p11-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%95%B0%E5%80%BC">p11 基本数据类型：数值</a>
+<ul>
+<li><a href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8Bint">整数类型：int</a></li>
+<li><a href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B1%BB%E5%9E%8Bfloat">浮点数类型：float</a></li>
+<li><a href="#%E5%A4%8D%E6%95%B0%E7%B1%BB%E5%9E%8B">复数类型</a></li>
+<li><a href="#math%E6%A8%A1%E5%9D%97">math模块</a></li>
+<li><a href="#cmath%E6%A8%A1%E5%9D%97">cmath模块</a></li>
+</ul>
+</li>
+<li><a href="#p12-%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E9%80%BB%E8%BE%91%E5%80%BC">p12 基本类型：逻辑值</a>
+<ul>
+<li><a href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97">逻辑运算</a></li>
+<li><a href="#%E7%B1%BB%E5%9E%8B%E5%AF%B9%E5%BA%94%E7%9A%84%E7%9C%9F%E5%80%BC">类型对应的真值</a></li>
+</ul>
+</li>
+<li><a href="#p13-%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%AD%97%E7%AC%A6%E4%B8%B2">p13 基本类型：字符串</a>
+<ul>
+<li><a href="#%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C">常见操作</a></li>
+<li><a href="#%E5%BA%8F%E5%88%97">序列</a></li>
+</ul>
+</li>
+<li><a href="#p14-%E5%8F%98%E9%87%8F%E5%92%8C%E5%BC%95%E7%94%A8">p14 变量和引用</a>
+<ul>
+<li><a href="#%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83">命名规范</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E8%B5%8B%E5%80%BC%E8%AF%AD%E5%8F%A5">其他赋值语句</a></li>
+</ul>
+</li>
+<li><a href="#p16%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84">p16容器类型：列表和元组</a>
+<ul>
+<li><a href="#%E5%88%9B%E5%BB%BA">创建</a></li>
+<li><a href="#%E5%88%97%E8%A1%A8%E7%8B%AC%E6%9C%89%E7%9A%84%E6%93%8D%E4%BD%9C">列表独有的操作</a></li>
+<li><a href="#%E4%B8%A4%E8%80%85%E5%85%B1%E6%9C%89%E7%9A%84%E6%93%8D%E4%BD%9C">两者共有的操作</a></li>
+</ul>
+</li>
+<li><a href="#p17%E5%AD%97%E5%85%B8%E7%B1%BB%E5%9E%8B">p17字典类型</a>
+<ul>
+<li><a href="#%E5%88%9B%E5%BB%BA-1">创建</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0">更新</a></li>
+<li><a href="#%E8%AE%BF%E9%97%AE">访问</a></li>
+</ul>
+</li>
+<li><a href="#p18%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B">p18集合类型</a>
+<ul>
+<li><a href="#%E5%88%9B%E5%BB%BA-2">创建</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0-1">更新</a></li>
+<li><a href="#%E8%AE%BF%E9%97%AE-1">访问</a></li>
+<li><a href="#%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97">集合运算</a></li>
+<li><a href="#%E9%9B%86%E5%90%88%E5%85%B3%E7%B3%BB">集合关系</a></li>
+</ul>
+</li>
+<li><a href="#p19%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B%E5%92%8C%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B">p19可变类型和不可变类型</a>
+<ul>
+<li><a href="#%E4%B8%8D%E5%8F%AF%E5%8F%98">不可变</a></li>
+<li><a href="#%E5%8F%AF%E5%8F%98">可变</a></li>
+<li><a href="#%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%B5%8B%E5%80%BC%E5%BC%95%E7%94%A8%E9%97%AE%E9%A2%98">可变类型的赋值引用问题</a></li>
+</ul>
+</li>
+<li><a href="#p20%E5%BB%BA%E7%AB%8B%E5%A4%8D%E6%9D%82%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">p20建立复杂的数据结构</a></li>
+<li><a href="#p21%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BAio">p21输入输出IO</a>
+<ul>
+<li><a href="#%E8%BE%93%E5%85%A5">输入</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA">输出</a>
+<ul>
+<li><a href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA">格式化输出</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#p23%E8%87%AA%E5%8A%A8%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B">p23自动计算过程</a>
+<ul>
+<li><a href="#%E5%86%AF%E8%AF%BA%E4%BE%9D%E6%9B%BC%E6%9C%BA">冯诺依曼机</a>
+<ul>
+<li><a href="#%E4%BA%94%E5%A4%A7%E6%9E%84%E6%88%90%E9%83%A8%E5%88%86">五大构成部分</a></li>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E6%97%B6">程序执行过程时</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#p24-%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B">p24 控制流程</a></li>
+<li><a href="#p25-%E6%9D%A1%E4%BB%B6%E5%88%86%E6%94%AF">p25 条件分支</a></li>
+<li><a href="#p26-while-%E5%BE%AA%E7%8E%AF">p26 while 循环</a>
+<ul>
+<li><a href="#%E5%BE%AA%E7%8E%AF%E5%B5%8C%E5%A5%97">循环嵌套</a></li>
+</ul>
+</li>
+<li><a href="#p27for%E5%BE%AA%E7%8E%AF">p27for循环</a>
+<ul>
+<li><a href="#range%E5%87%BD%E6%95%B0">range函数</a></li>
+</ul>
+</li>
+<li><a href="#p29-%E4%BB%A3%E7%A0%81%E7%BB%84%E7%BB%87%E5%87%BD%E6%95%B0def">p29 代码组织：函数（def）</a>
+<ul>
+<li><a href="#%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89">函数的定义</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8">函数调用</a></li>
+<li><a href="#%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">变量的作用域</a></li>
+<li><a href="#map%E5%87%BD%E6%95%B0">map函数</a></li>
+<li><a href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0lambda">匿名函数lambda</a></li>
+</ul>
+</li>
+<li><a href="#p30-%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0">p30 函数的参数</a>
+<ul>
+<li><a href="#%E5%BD%A2%E5%8F%82%E4%B8%8E%E5%AE%9E%E5%8F%82%E7%9A%84%E6%A6%82%E5%BF%B5">形参与实参的概念</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0">定义函数的参数</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80%E5%9B%BA%E5%AE%9A%E6%89%80%E6%9C%89%E5%8F%82%E6%95%B0">方法一，固定所有参数</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0">方法二，可变参数</a></li>
+</ul>
+</li>
+<li><a href="#%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0">调用函数的参数</a></li>
+</ul>
+</li>
+<li><a href="#p32-%E5%BC%95%E7%94%A8%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97">p32 引用扩展模块</a>
+<ul>
+<li><a href="#%E5%BC%95%E7%94%A8%E6%96%B9%E5%BC%8F">引用方式</a></li>
+</ul>
+</li>
+<li><a href="#p33-datetime%E6%A8%A1%E5%9D%97">p33 datetime模块</a>
+<ul>
+<li><a href="#%E4%B8%BB%E8%A6%81%E7%B1%BB">主要类</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4">获取当前时间</a></li>
+<li><a href="#%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96">日期格式化</a></li>
+<li><a href="#%E6%97%B6%E9%97%B4%E6%88%B3">时间戳</a></li>
+</ul>
+</li>
+<li><a href="#p34-calendar%E6%A8%A1%E5%9D%97">p34 calendar模块</a></li>
+<li><a href="#p35-time%E6%A8%A1%E5%9D%97">p35 time模块</a></li>
+<li><a href="#p36-%E7%AE%97%E6%95%B0%E6%A8%A1%E5%9D%97">p36 算数模块</a>
+<ul>
+<li><a href="#math%E6%A8%A1%E5%9D%97-1">math模块</a></li>
+<li><a href="#cmath%E6%A8%A1%E5%9D%97-1">cmath模块</a></li>
+<li><a href="#decimal%E6%A8%A1%E5%9D%97">decimal模块</a></li>
+<li><a href="#fractions%E6%A8%A1%E5%9D%97">fractions模块</a></li>
+<li><a href="#random%E6%A8%A1%E5%9D%97">random模块</a></li>
+</ul>
+</li>
+<li><a href="#p37-%E6%8C%81%E4%B9%85%E5%8C%96%E6%A8%A1%E5%9D%97shelve">p37 持久化模块：shelve</a></li>
+<li><a href="#p38-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99">p38 文件读写</a>
+<ul>
+<li><a href="#%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6">打开文件</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C">文件读写操作</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E5%85%B3%E9%97%AD">文件关闭</a></li>
+<li><a href="#csv-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99">csv 文件读写</a></li>
+<li><a href="#excel%E6%96%87%E4%BB%B6">Excel文件</a></li>
+<li><a href="#pdf%E6%96%87%E4%BB%B6">Pdf文件</a></li>
+</ul>
+</li>
+<li><a href="#p43%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">p43面向对象</a>
+<ul>
+<li><a href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%A6%82%E5%BF%B5">对象的概念</a></li>
+</ul>
+</li>
+<li><a href="#p44-%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E8%B0%83%E7%94%A8">p44 类的定义与调用</a>
+<ul>
+<li><a href="#%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89">类的定义</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B%E5%8C%96%E5%AF%B9%E8%B1%A1">实例化对象</a></li>
+</ul>
+</li>
+<li><a href="#p45-%E7%B1%BB%E5%AE%9A%E4%B9%89%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E6%96%B9%E6%B3%95">p45 类定义中的特殊方法</a>
+<ul>
+<li><a href="#%E5%AF%B9%E8%B1%A1%E6%9E%84%E9%80%A0%E5%99%A8">对象构造器</a></li>
+<li><a href="#%E6%9E%90%E6%9E%84%E5%99%A8">析构器</a></li>
+<li><a href="#%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97">算数运算</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C">字符串操作</a></li>
+</ul>
+</li>
+<li><a href="#p46-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%8E%92%E5%BA%8F">p46 自定义对象的排序</a>
+<ul>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95">自定义比较方法</a></li>
+</ul>
+</li>
+<li><a href="#p47-%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF">p47 类的继承</a></li>
+<li><a href="#p49-%E4%BE%8B%E5%A4%96%E5%A4%84%E7%90%86">p49 例外处理</a></li>
+<li><a href="#p50%E6%8E%A8%E5%AF%BC%E5%BC%8F">p50推导式</a>
+<ul>
+<li><a href="#%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F">列表推导式</a></li>
+<li><a href="#%E5%AD%97%E5%85%B8%E6%8E%A8%E5%AF%BC%E5%BC%8F">字典推导式</a></li>
+<li><a href="#%E9%9B%86%E5%90%88%E6%8E%A8%E5%AF%BC%E5%BC%8F">集合推导式</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E5%99%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F">生成器推导式</a></li>
+</ul>
+</li>
+<li><a href="#p51%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0">p51生成器函数</a></li>
+<li><a href="#p53-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%BA%93-pillow">p53 图像处理库-Pillow</a>
+<ul>
+<li><a href="#%E5%9B%BE%E7%89%87%E6%89%93%E5%BC%80">图片打开</a></li>
+<li><a href="#%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86">图片处理</a>
+<ul>
+<li><a href="#thumbnail">thumbnail</a></li>
+<li><a href="#filter">filter</a></li>
+<li><a href="#%E6%B7%BB%E5%8A%A0%E6%96%87%E6%9C%AC">添加文本</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%BE%E7%89%87%E4%BF%9D%E5%AD%98">图片保存</a></li>
+</ul>
+</li>
+<li><a href="#p54-web%E6%A1%86%E6%9E%B6">p54 web框架</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a></li>
+</ul>
+</li>
+<li><a href="#p55-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB">p55 网络爬虫</a>
+<ul>
+<li><a href="#request">request</a></li>
+<li><a href="#beautiful-soup">Beautiful Soup</a></li>
+</ul>
+</li>
+<li><a href="#p56%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96">p56数据可视化</a>
+<ul>
+<li><a href="#numpy-%E5%BA%93">Numpy 库</a></li>
+<li><a href="#matplotlib">matplotlib</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="p1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B">p1 为什么要学习编程</h2>
+<h2 id="p2-%E7%A8%8B%E5%BA%8F%E6%98%AF%E4%BB%80%E4%B9%88">p2 程序是什么</h2>
+<blockquote>
+<p>做一件事情或者解决一个问题所采取的一系列固定步骤</p>
+</blockquote>
+<h2 id="p3-python%E5%8E%86%E5%8F%B2%E5%8F%8A%E7%8E%B0%E7%8A%B6">p3 python历史及现状</h2>
+<p>1989年诞生</p>
+<p>继承多种优秀语言特性，高级动态面向对象的语言，支持继承、重载、派生、多继承等。</p>
+<p>在自动化运维，问开发，机器学习，科学建模等领域广泛应用。</p>
+<h2 id="p4-%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83">p4 运行环境</h2>
+<ul>
+<li>自带的IDE：shell-idle</li>
+<li>pycharm等</li>
+<li>Anaconda 针对科学计算的安装包，附带了常用第三方库，使用conda作为包管理器</li>
+</ul>
+<h2 id="p5-pycharm%E4%BB%8B%E7%BB%8D">p5 pycharm介绍</h2>
+<h2 id="p6-%E7%AC%AC%E4%B8%80%E4%B8%AApython%E7%A8%8B%E5%BA%8F">p6 第一个python程序</h2>
+<ul>
+<li>idle交互式运行</li>
+<li>编写源文件运行</li>
+</ul>
+<h2 id="p7-%E4%B8%8A%E6%9C%BA%E7%BB%83%E4%B9%A0">p7 上机练习</h2>
+<h2 id="p8-python%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E9%A3%8E%E6%A0%BC">p8 Python程序设计风格</h2>
+<p>优雅、明确、简单</p>
+<p><code>代码强制缩进</code></p>
+<p><img src="https://img.qylh.xyz/blog/1655515237046.png" alt="python 哲学"></p>
+<h2 id="p9%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1%E5%8F%8A%E5%85%B6%E7%BB%84%E7%BB%87">p9数据对象及其组织</h2>
+<blockquote>
+<p>数据是信息的表现形式和载体
+是对现实世界实体和概念的抽象</p>
+</blockquote>
+<h3 id="%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%BD%92%E7%BA%B3">数据类型归纳</h3>
+<ul>
+<li>
+<p>简单类型</p>
+<ul>
+<li>int</li>
+<li>float</li>
+<li>complex</li>
+<li>bool</li>
+<li>str</li>
+</ul>
+</li>
+<li>
+<p>容器类型</p>
+<ul>
+<li>list</li>
+<li>tuple</li>
+<li>set</li>
+<li>dict</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E6%95%B0%E6%8D%AE%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F">数据组织方式</h3>
+<ol>
+<li>无组织</li>
+<li>标签式组织数据</li>
+<li>队列、栈、树、图等</li>
+</ol>
+<h2 id="p10-%E8%AE%A1%E7%AE%97%E5%92%8C%E6%8E%A7%E5%88%B6%E6%B5%81">p10 计算和控制流</h2>
+<blockquote>
+<p>各种类型的数据对象，可以通过各种运算组织成复杂的表达式</p>
+</blockquote>
+<h3 id="%E8%BF%90%E7%AE%97%E8%AF%AD%E5%8F%A5">运算语句</h3>
+<ul>
+<li>表达式计算   <code>12*3</code></li>
+<li>函数调用 <code>math.sqr(2)</code></li>
+<li>赋值 <code>x=2</code></li>
+</ul>
+<h3 id="%E6%8E%A7%E5%88%B6%E6%B5%81%E8%AF%AD%E5%8F%A5">控制流语句</h3>
+<ul>
+<li>顺序结构</li>
+<li>条件分支</li>
+<li>循环结构</li>
+</ul>
+<h3 id="%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5">定义语句</h3>
+<ul>
+<li>def 函数定义</li>
+<li>class 类定义</li>
+</ul>
+<h2 id="p11-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%95%B0%E5%80%BC">p11 基本数据类型：数值</h2>
+<h3 id="%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8Bint">整数类型：int</h3>
+<p>python中int 不限制大小！</p>
+<p>除 //（整数除法），m**n(乘方) 外基本与C语言保持一致</p>
+<p>比较 ： <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code> <code>==</code></p>
+<p>数制表示：</p>
+<p><img src="https://img.qylh.xyz/blog/1655515979056.png" alt=""></p>
+<h3 id="%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B1%BB%E5%9E%8Bfloat">浮点数类型：float</h3>
+<p>最多<code>17</code>位有效数字</p>
+<p>可以用科学计数法表示：如 <code>1.2234e+10</code></p>
+<p>注意不要试图比较浮点类型的大小</p>
+<h3 id="%E5%A4%8D%E6%95%B0%E7%B1%BB%E5%9E%8B">复数类型</h3>
+<p>python 内置了复数类型，支持常见的的加减乘除，以及乘方运算。</p>
+<p><code>a.imag</code> 获得虚部, <code>a.real</code> 获得实部</p>
+<p><img src="https://img.qylh.xyz/blog/1655516221064.png" alt=""></p>
+<p>！注意： 复数之间仅支持比较相等</p>
+<h3 id="math%E6%A8%A1%E5%9D%97">math模块</h3>
+<p>用于整数和浮点数的计算</p>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;</span><span class="bash">&gt;&gt; dir(math)</span>
+['__doc__', '__loader__', '__name__', '__package__', '__spec__', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'comb', 'copysign', 'cos', 'cosh', 'degrees', 'dist', 'e', 'erf', 'erfc', 'exp', 'expm1', 'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma', 'gcd', 'hypot', 'inf', 'isclose', 'isfinite', 'isinf', 'isnan', 'isqrt', 'ldexp', 'lgamma', 'log', 'log10', 'log1p', 'log2', 'modf', 'nan', 'perm', 'pi', 'pow', 'prod', 'radians', 'remainder', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'tau', 'trunc']
+<span class="hljs-meta">&gt;</span><span class="bash">&gt;&gt;</span>
+
+</div></code></pre>
+<h3 id="cmath%E6%A8%A1%E5%9D%97">cmath模块</h3>
+<p>可用于计算复数！</p>
+<p>如平面直角坐标系和极坐标之间的转换</p>
+<h2 id="p12-%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E9%80%BB%E8%BE%91%E5%80%BC">p12 基本类型：逻辑值</h2>
+<p>其实就是bool类型</p>
+<h3 id="%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97">逻辑运算</h3>
+<ul>
+<li>and</li>
+<li>or</li>
+<li>not</li>
+</ul>
+<p>优先级关系：not&gt;and&gt;or</p>
+<h3 id="%E7%B1%BB%E5%9E%8B%E5%AF%B9%E5%BA%94%E7%9A%84%E7%9C%9F%E5%80%BC">类型对应的真值</h3>
+<ul>
+<li>整数 浮点数 复数 除0位false外其他均为true</li>
+<li>字符串类型中 空串（“”）为false 否则为true</li>
+<li>序列类型，空序列为false</li>
+<li>None 为false</li>
+</ul>
+<h2 id="p13-%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%AD%97%E7%AC%A6%E4%B8%B2">p13 基本类型：字符串</h2>
+<p>双引号和单引号都可以表示字符串！</p>
+<p>三引号可以用于多行字符串的表示</p>
+<p>\实现转义字符</p>
+<p>字符串编号：从0开始，可随机访问</p>
+<h3 id="%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C">常见操作</h3>
+<ul>
+<li>len 获得长度</li>
+<li>切片 <code>s[0:10:1]</code></li>
+<li>拼接 <code>+</code></li>
+<li>重复 <code>s*3</code></li>
+<li>比较 ==</li>
+<li>判断包含 in</li>
+<li>删空格
+<ul>
+<li>str.strip 去除前后所有空格</li>
+<li>str.lstrip 去除前面的空格</li>
+<li>str.rstrip 去除后面的空格</li>
+</ul>
+</li>
+<li>判断字母数字（除了比较asc码外）
+<ul>
+<li>isalpha 是否全部由字母构成</li>
+<li>isdigit 是否全部由数字构成</li>
+<li>isalnum 是否只包含字母和数字</li>
+</ul>
+</li>
+<li>split([分割字符]) 分割，返回列表</li>
+<li>join 将列表合并为字符串</li>
+<li>upper/lower/swapcase 大小写转化</li>
+<li>ljust/center/rjust 排版对其方式</li>
+<li>s.replace(&quot;a&quot;,&quot;ab&quot;) 子串替换</li>
+</ul>
+<h3 id="%E5%BA%8F%E5%88%97">序列</h3>
+<p>字符串是一种序列</p>
+<p>什么是序列？</p>
+<blockquote>
+<p>能够按照整数顺序排列的数据</p>
+</blockquote>
+<p>序列的内部结构</p>
+<ul>
+<li>可以从0开始索引</li>
+<li>可以切片</li>
+<li>可以用len获得长度</li>
+<li>可用+ 拼接</li>
+<li>可用* 重复</li>
+<li>可用in 判断子元素存在性</li>
+</ul>
+<h2 id="p14-%E5%8F%98%E9%87%8F%E5%92%8C%E5%BC%95%E7%94%A8">p14 变量和引用</h2>
+<h3 id="%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83">命名规范</h3>
+<ul>
+<li>字母和数字及下划线组合而成，区分大小写</li>
+<li>无其他特殊字符</li>
+<li>首字母必须为字母</li>
+</ul>
+<p>变量类型随着指向的数据对象类型改变而改变</p>
+<h3 id="%E5%85%B6%E4%BB%96%E8%B5%8B%E5%80%BC%E8%AF%AD%E5%8F%A5">其他赋值语句</h3>
+<ul>
+<li>合并赋值  <code>a=b=c=1</code></li>
+<li>顺序赋值 <code>a,b=1,2</code></li>
+<li>简写赋值语句
+<ul>
+<li>a+=1</li>
+<li>a *=1</li>
+</ul>
+</li>
+</ul>
+<h2 id="p16%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84">p16容器类型：列表和元组</h2>
+<blockquote>
+<p>列表和元组的区别：列表可变，元组不可变，列表比元组多一些操作</p>
+</blockquote>
+<h3 id="%E5%88%9B%E5%BB%BA">创建</h3>
+<p>列表：[],或list()
+元组：(),或tuple()</p>
+<h3 id="%E5%88%97%E8%A1%A8%E7%8B%AC%E6%9C%89%E7%9A%84%E6%93%8D%E4%BD%9C">列表独有的操作</h3>
+<ul>
+<li>增长列表
+<ul>
+<li>append</li>
+<li>insert</li>
+<li>extend</li>
+</ul>
+</li>
+<li>缩减列表
+<ul>
+<li>pop 默认删除最后一个，可指定位置</li>
+<li>remove 移走某个元素</li>
+<li>clear</li>
+</ul>
+</li>
+<li>重新组织
+<ul>
+<li>reverse 翻转</li>
+<li>sort 从大到小排序</li>
+<li>reversed 返回翻转的新列表，不改变原列表</li>
+<li>sorted 返回重排的列表</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://img.qylh.xyz/blog/1655608573153.png" alt=""></p>
+<h3 id="%E4%B8%A4%E8%80%85%E5%85%B1%E6%9C%89%E7%9A%84%E6%93%8D%E4%BD%9C">两者共有的操作</h3>
+<ul>
+<li><code>+</code> 连接</li>
+<li><code>*</code> 重复</li>
+<li>len() 获得长度</li>
+<li>索引</li>
+<li>切片</li>
+<li>查找
+<ul>
+<li>in</li>
+<li>index 获得指定元素出现位置</li>
+<li>count</li>
+</ul>
+</li>
+<li>统计
+<ul>
+<li>sum</li>
+<li>min</li>
+<li>max</li>
+</ul>
+</li>
+</ul>
+<h2 id="p17%E5%AD%97%E5%85%B8%E7%B1%BB%E5%9E%8B">p17字典类型</h2>
+<p>key-value结构</p>
+<h3 id="%E5%88%9B%E5%BB%BA">创建</h3>
+<p>a={}
+a=dict()</p>
+<p>元素可以是任意类型，也可以是字典（有点类似json）</p>
+<h3 id="%E6%9B%B4%E6%96%B0">更新</h3>
+<ul>
+<li>update({})可以合并、增长字典</li>
+<li>del 删除指定标签的数据项</li>
+<li>pop</li>
+<li>popitem 删除并返回任意一个数据项</li>
+<li>clear</li>
+</ul>
+<h3 id="%E8%AE%BF%E9%97%AE">访问</h3>
+<p>可以直接索引，也可以用get方法拿到key对应的value</p>
+<ul>
+<li>keys 以列表的方式返回所有key</li>
+<li>values 返回所有数据值</li>
+<li>items 以二元组列表的方式返回所有数据项</li>
+</ul>
+<h2 id="p18%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B">p18集合类型</h2>
+<p>特点：<strong>无序且不重复</strong></p>
+<h3 id="%E5%88%9B%E5%BB%BA">创建</h3>
+<ul>
+<li>{}</li>
+<li>set()</li>
+</ul>
+<p>注意set中不可加入可变类型的数据</p>
+<h3 id="%E6%9B%B4%E6%96%B0">更新</h3>
+<ul>
+<li>add</li>
+<li>update</li>
+<li>remove/discard</li>
+<li>pop</li>
+<li>clear</li>
+</ul>
+<h3 id="%E8%AE%BF%E9%97%AE">访问</h3>
+<ul>
+<li>in</li>
+<li>pop 删除一个并返回值，所以可以复制一个set然后一直pop到空，以此来遍历</li>
+<li>迭代 for i in set</li>
+</ul>
+<h3 id="%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97">集合运算</h3>
+<p><img src="https://img.qylh.xyz/blog/1655610182239.png" alt=""></p>
+<h3 id="%E9%9B%86%E5%90%88%E5%85%B3%E7%B3%BB">集合关系</h3>
+<ul>
+<li><code>&lt;=</code>子集</li>
+<li><code>=</code>真子集</li>
+<li><code>&gt;</code>超集</li>
+<li><code>:</code>真超集</li>
+</ul>
+<p>isdisjoint() 方法可以判断两个集合是交集是否为空</p>
+<h2 id="p19%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B%E5%92%8C%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B">p19可变类型和不可变类型</h2>
+<h3 id="%E4%B8%8D%E5%8F%AF%E5%8F%98">不可变</h3>
+<ul>
+<li>整数</li>
+<li>浮点数</li>
+<li>复数</li>
+<li>字符串</li>
+<li>逻辑值</li>
+<li>元组</li>
+</ul>
+<h3 id="%E5%8F%AF%E5%8F%98">可变</h3>
+<ul>
+<li>列表</li>
+<li>字典</li>
+<li>集合</li>
+</ul>
+<h3 id="%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%B5%8B%E5%80%BC%E5%BC%95%E7%94%A8%E9%97%AE%E9%A2%98">可变类型的赋值引用问题</h3>
+<pre class="hljs"><code><div>a=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]
+b=a
+b.pop()<span class="hljs-comment"># 也会造成a的改变，因为他们引用了同一个地址的数据</span>
+</div></code></pre>
+<h2 id="p20%E5%BB%BA%E7%AB%8B%E5%A4%8D%E6%9D%82%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">p20建立复杂的数据结构</h2>
+<p>可以将多种数据结构使用嵌套等方式自由地组合成更复杂的结构</p>
+<h2 id="p21%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BAio">p21输入输出IO</h2>
+<h3 id="%E8%BE%93%E5%85%A5">输入</h3>
+<p>input(&quot;提示信息&quot;)输入，注意需要使用强制类型转换来将输入转换为期待的数据类型！</p>
+<h3 id="%E8%BE%93%E5%87%BA">输出</h3>
+<p><code>print([object,...][,sep=‘ ‘][,end=‘\n’][,file=sys.stdout])</code></p>
+<ul>
+<li>sep：表示变量之间用什么字符串隔开，缺省是空格</li>
+<li>end：表示以这个字符串结尾，缺省为换行</li>
+<li>file：指定了文本将要发送到的文件、标准流或其它类似的文件的对象；默认是sys.stdout</li>
+</ul>
+<h4 id="%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA">格式化输出</h4>
+<p>例如：<code>'%d %s' % (v1, v2)</code></p>
+<h2 id="p23%E8%87%AA%E5%8A%A8%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B">p23自动计算过程</h2>
+<h3 id="%E5%86%AF%E8%AF%BA%E4%BE%9D%E6%9B%BC%E6%9C%BA">冯诺依曼机</h3>
+<h4 id="%E4%BA%94%E5%A4%A7%E6%9E%84%E6%88%90%E9%83%A8%E5%88%86">五大构成部分</h4>
+<ul>
+<li>运算器</li>
+<li>控制器</li>
+<li>存储器</li>
+<li>输入设备</li>
+<li>输出设备</li>
+</ul>
+<h4 id="%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E6%97%B6">程序执行过程时</h4>
+<ol>
+<li>控制器从存储器中取出程序语句和额外数据；</li>
+<li>数据齐全的语句交给运算器进行算术或者逻辑运算；</li>
+<li>运算结果再存回存储器；</li>
+<li>控制器确定下一条程序语句，回到步骤1继续</li>
+</ol>
+<p><img src="https://img.qylh.xyz/blog/1655611145569.png" alt=""></p>
+<h2 id="p24-%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B">p24 控制流程</h2>
+<p>三种流程：</p>
+<ol>
+<li>顺序</li>
+<li>条件分支</li>
+<li>循环</li>
+</ol>
+<h2 id="p25-%E6%9D%A1%E4%BB%B6%E5%88%86%E6%94%AF">p25 条件分支</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> &lt;逻辑表达式<span class="hljs-number">1</span>&gt;:
+  &lt;语句块<span class="hljs-number">1</span>&gt;
+<span class="hljs-keyword">elif</span> &lt;逻辑表达式<span class="hljs-number">2</span>&gt;:
+    &lt;语句块<span class="hljs-number">2</span>&gt;
+<span class="hljs-keyword">elif</span> &lt;逻辑表达式<span class="hljs-number">3</span>&gt;:
+    &lt;语句块<span class="hljs-number">3</span>&gt;
+    ... ...
+<span class="hljs-keyword">else</span>:
+    &lt;语句块n&gt;
+</div></code></pre>
+<h2 id="p26-while-%E5%BE%AA%E7%8E%AF">p26 while 循环</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">while</span> &lt;逻辑表达式&gt;:
+  &lt;语句块&gt;
+  <span class="hljs-keyword">break</span> <span class="hljs-comment">#跳出循环</span>
+  <span class="hljs-keyword">continue</span> <span class="hljs-comment">#略过余下循环语句</span>
+  &lt;语句块&gt;
+<span class="hljs-keyword">else</span>: <span class="hljs-comment">#条件不满足退出循环，则执行</span>
+  &lt;语句块&gt;
+</div></code></pre>
+<h3 id="%E5%BE%AA%E7%8E%AF%E5%B5%8C%E5%A5%97">循环嵌套</h3>
+<h2 id="p27for%E5%BE%AA%E7%8E%AF">p27for循环</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> &lt;循环变量&gt; <span class="hljs-keyword">in</span> &lt;可迭代对象&gt;:
+  &lt;语句块<span class="hljs-number">1</span>&gt;
+  <span class="hljs-keyword">break</span> <span class="hljs-comment">#跳出循环</span>
+  <span class="hljs-keyword">continue</span> <span class="hljs-comment">#略过余下循环语句</span>
+<span class="hljs-keyword">else</span>: <span class="hljs-comment">#迭代完毕，则执行</span>
+  &lt;语句块<span class="hljs-number">2</span>&gt;
+</div></code></pre>
+<h3 id="range%E5%87%BD%E6%95%B0">range函数</h3>
+<p>用于构造数列</p>
+<ul>
+<li>ange(&lt;终点&gt;)返回一个从0开始到终点的数列</li>
+<li>range(&lt;起点&gt;,&lt;终点&gt;)从0以外的任何整数开始构建数列</li>
+<li>range(&lt;起点&gt;,&lt;终点&gt;,&lt;步长&gt;)修改数列的步长，通过将步长设置为负数能够实现反向数列</li>
+</ul>
+<p>注意：<strong>range构建的数列，包含起点整数，而不包含终点整数</strong></p>
+<p>range 可通过list，tuple 方法转换为容器类型</p>
+<h2 id="p29-%E4%BB%A3%E7%A0%81%E7%BB%84%E7%BB%87%E5%87%BD%E6%95%B0def">p29 代码组织：函数（def）</h2>
+<p>程序中实现明确功能的代码段可以封装成一个函数，以便复用（reuse）</p>
+<h3 id="%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89">函数的定义</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> &lt;函数名&gt; <span class="hljs-params">(&lt;参数表&gt;)</span>:</span>
+  &lt;缩进的代码段&gt;
+  <span class="hljs-keyword">return</span> &lt;函数返回值&gt;
+</div></code></pre>
+<h3 id="%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8">函数调用</h3>
+<pre class="hljs"><code><div>无返回值：&lt;函数名&gt;(&lt;参数表&gt;)
+返回值赋值：v = &lt;函数名&gt;(&lt;参数表&gt;)
+</div></code></pre>
+<h3 id="%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">变量的作用域</h3>
+<ul>
+<li>局部变量是在函数内部定义的变量，仅在该函数内部有效</li>
+<li>在函数外定义的函数为全局变量，整个代码段有效</li>
+</ul>
+<p>一个函数内可以访问全局变量的值，但是<strong>无法修改</strong>，原因是python在内部创建了一个同名的局部变量，对其的修改无法反馈到全局变量上
+但是<strong>用global关键字可以在函数中改变全局变量的值</strong>。</p>
+<h3 id="map%E5%87%BD%E6%95%B0">map函数</h3>
+<p>如果需要对列表中每个元素都执行一次某个自定义函数，可以使用map函数实现，如对列表中每个元素都+1可以用如下代码实现:</p>
+<pre class="hljs"><code><div>list=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add1</span><span class="hljs-params">(a)</span>:</span>
+    <span class="hljs-keyword">return</span> a+<span class="hljs-number">1</span>
+list=list(map(add1,list))
+</div></code></pre>
+<h3 id="%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0lambda">匿名函数lambda</h3>
+<p>函数只需要用一次，名字也就不重要了！</p>
+<p>如上面的要求用lambda实现：</p>
+<p><code>lambda &lt;参数表&gt;:&lt;表达式&gt;</code></p>
+<pre class="hljs"><code><div>list=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
+list=list(map(<span class="hljs-keyword">lambda</span> a:a+<span class="hljs-number">1</span>,list))
+</div></code></pre>
+<h2 id="p30-%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0">p30 函数的参数</h2>
+<h3 id="%E5%BD%A2%E5%8F%82%E4%B8%8E%E5%AE%9E%E5%8F%82%E7%9A%84%E6%A6%82%E5%BF%B5">形参与实参的概念</h3>
+<p>形参是函数创建和定义过程中，函数名后面括号里的参数</p>
+<p>实参是函数在调用过程中传入的参数</p>
+<h3 id="%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0">定义函数的参数</h3>
+<h4 id="%E6%96%B9%E6%B3%95%E4%B8%80%E5%9B%BA%E5%AE%9A%E6%89%80%E6%9C%89%E5%8F%82%E6%95%B0">方法一，固定所有参数</h4>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(key1, key2, key3...)</span>:</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(key1, key2=value2...)</span>:</span>
+</div></code></pre>
+<h4 id="%E6%96%B9%E6%B3%95%E4%BA%8C%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0">方法二，可变参数</h4>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(*args)</span>:</span> <span class="hljs-comment">#不带key的多个参数</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(**kwargs)</span>:</span> <span class="hljs-comment">#key=val形式的多个参数</span>
+</div></code></pre>
+<h3 id="%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0">调用函数的参数</h3>
+<ol>
+<li>按照顺序传递</li>
+<li>使用key关键字可以不按照顺序传递</li>
+<li>混用时必须顺序在前，key在后</li>
+</ol>
+<h2 id="p32-%E5%BC%95%E7%94%A8%E6%89%A9%E5%B1%95%E6%A8%A1%E5%9D%97">p32 引用扩展模块</h2>
+<ol>
+<li>每个python文件都是一个独立的Module</li>
+<li>package是放在一个文件夹里的模块集合</li>
+</ol>
+<h3 id="%E5%BC%95%E7%94%A8%E6%96%B9%E5%BC%8F">引用方式</h3>
+<p>import 模块 as 别名</p>
+<p>form 模块 import 函数</p>
+<p>dir(名称) 可以获得名称的属性</p>
+<p>help(名称) 可以显示参考手册</p>
+<h2 id="p33-datetime%E6%A8%A1%E5%9D%97">p33 datetime模块</h2>
+<h3 id="%E4%B8%BB%E8%A6%81%E7%B1%BB">主要类</h3>
+<ul>
+<li>datetime.date() 处理日期（年月日）</li>
+<li>datetime.time() 处理时间（时分秒、毫秒）</li>
+<li>datetime.datetime() 处理日期+时间</li>
+<li>datetime.timedelta() 处理时段（时间间隔）</li>
+</ul>
+<h3 id="%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4">获取当前时间</h3>
+<ul>
+<li>datetime.date.today()</li>
+<li>datetime.datetime.now()</li>
+</ul>
+<h3 id="%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96">日期格式化</h3>
+<p>datetime.datetime.strftime()</p>
+<p>datetime.datetime..isoformat()(ISO格式)</p>
+<h3 id="%E6%97%B6%E9%97%B4%E6%88%B3">时间戳</h3>
+<blockquote>
+<p>指格林威治时间1970年01月01日00时00分00秒起至现在的总秒数</p>
+</blockquote>
+<p>timetuple 函数可将时间转为时间戳</p>
+<p>datetime.date.fromtimestamp()
+可将时间戳转换为时间</p>
+<p>timedelta() 用于标识两个时间的时间间隔</p>
+<h2 id="p34-calendar%E6%A8%A1%E5%9D%97">p34 calendar模块</h2>
+<blockquote>
+<p>跟日历相关的若干函数和类，可以生成文本形式的日历</p>
+</blockquote>
+<p>感觉没有广泛的应用空间，其中的日历计算可能会方便计算</p>
+<h2 id="p35-time%E6%A8%A1%E5%9D%97">p35 time模块</h2>
+<ul>
+<li>time.time() 换取时间戳</li>
+<li>获取时间
+<ul>
+<li>time.asctime()</li>
+<li>time.ctime()</li>
+</ul>
+</li>
+<li>time.sleep() 程序暂停</li>
+</ul>
+<h2 id="p36-%E7%AE%97%E6%95%B0%E6%A8%A1%E5%9D%97">p36 算数模块</h2>
+<h3 id="math%E6%A8%A1%E5%9D%97">math模块</h3>
+<p>math.sin()/math.cos()/math.tan()
+math.pi Π = 3.14159...
+math.log(x,a) 以a为底的x的对数
+math.pow(x,y) x^y</p>
+<h3 id="cmath%E6%A8%A1%E5%9D%97">cmath模块</h3>
+<p>主要是复数运算</p>
+<p>cmath.polar() 极坐标
+cmath.rect() 笛卡尔坐标
+cmath.exp(x) e^x
+cmath.log(x,a) 以a为底的x的对数
+cmath.log10(x) 以10为底x的对数
+cmath.sqrt(x) x的平方根。</p>
+<h3 id="decimal%E6%A8%A1%E5%9D%97">decimal模块</h3>
+<blockquote>
+<p>提供了十进制浮点运算支持</p>
+</blockquote>
+<p>为什么要用这个？？</p>
+<ol>
+<li>Decimal所表示的数是完全精确的。</li>
+<li>Decimal类包含有效位的概念，因此1.30 + 1.20的结果是2.50，保留尾随零以表示有效位。</li>
+<li>用户可更改精度</li>
+</ol>
+<h3 id="fractions%E6%A8%A1%E5%9D%97">fractions模块</h3>
+<blockquote>
+<p>分数模块</p>
+</blockquote>
+<p>生成分数
+Fraction(1,4)
+Fraction('0.25') 注意是个字符串
+Fraction.from_float(1.75)</p>
+<h3 id="random%E6%A8%A1%E5%9D%97">random模块</h3>
+<blockquote>
+<p>随机数模块，但其实是一种伪随机，因其结果是可预见的</p>
+</blockquote>
+<ul>
+<li>random.seed(a=None) 随机数种子
+random()，生成范围在[0,1)之间的随机实数</li>
+<li>uniform()，生成指定范围的内的随机浮点数</li>
+<li>randint(m,n)，生成指定范围[m,n]内的整数</li>
+<li>randrange(a,b,n)， 可 以 在 [a,b)范围内，按n递增的集合中随机选择一个数</li>
+<li>getrandbits(k)，生成k位二进制的随机整数</li>
+<li>choice()，从指定序列中随机选择一个元素</li>
+<li>sample()，能指定每次随机元素的个数</li>
+<li>shuffle()，可以将可变序列中所有元素随机排序</li>
+</ul>
+<h2 id="p37-%E6%8C%81%E4%B9%85%E5%8C%96%E6%A8%A1%E5%9D%97shelve">p37 持久化模块：shelve</h2>
+<blockquote>
+<p>类创建的对象并不是真正的数据库记录存储在内存而不是文件中关闭python，实例将消失</p>
+</blockquote>
+<blockquote>
+<p>shelve提供基本的存储操作，通过构造一个简单的数据库， 像操作字典一样按照键存储和获取本地的Python对象，使其可以跨程序运行而保持持久化</p>
+</blockquote>
+<p>个人理解：应该就是一种结构化的文件存储，可以使用类似字典的形式访问</p>
+<h2 id="p38-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99">p38 文件读写</h2>
+<h3 id="%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6">打开文件</h3>
+<p>f = open(filename[,mode[,buffering]])</p>
+<ul>
+<li>返回文件对象</li>
+<li>filename：文件的字符串名</li>
+<li>mode：可选参数，打开模式和文件类型
+<ol>
+<li>第一个字母是操作类型</li>
+</ol>
+<ul>
+<li>‘r’表示读模式</li>
+<li>‘w’表示写模式</li>
+<li>‘x’表示在文件不存在的情况下新创建并写文件</li>
+<li>‘a’表示在文件末尾追加写内容</li>
+<li>‘+’表示读写模式</li>
+</ul>
+<ol start="2">
+<li>第二个字母是文件类型</li>
+</ol>
+<ul>
+<li>‘t’表示文本类型</li>
+<li>‘b’表示二进制文件</li>
+</ul>
+</li>
+<li>buffering: 可选参数，文件的缓冲区，默认为-1</li>
+</ul>
+<h3 id="%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C">文件读写操作</h3>
+<ul>
+<li>f.write(str)</li>
+<li>f.writelines(strlist)：写入字符串列表</li>
+<li>f.read()</li>
+<li>f.readline()：返回一行</li>
+<li>f.readlines()：返回所有行、列表</li>
+</ul>
+<h3 id="%E6%96%87%E4%BB%B6%E5%85%B3%E9%97%AD">文件关闭</h3>
+<p>方式一：</p>
+<p>f.close()</p>
+<p>方式二：确保在退出后自动关闭文件</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(‘textfile’,’rt’) <span class="hljs-keyword">as</span> myfile :
+    myfile.read()
+</div></code></pre>
+<h3 id="csv-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99">csv 文件读写</h3>
+<ul>
+<li>文件读取reader
+<ul>
+<li>re = csv.reader()</li>
+<li>接受一个可迭代对象（比如csv文件），能返回一个生成器，可以从其中解析出内容</li>
+</ul>
+</li>
+<li>文件读取DictReader
++re = csv.DictReader()
+<ul>
+<li>与reader类似但返回的每一个单元格都放在一个元组的值内</li>
+</ul>
+</li>
+</ul>
+<p>文件写操作</p>
+<pre class="hljs"><code><div>w = csv.writer()
+w.witerow(rows)
+</div></code></pre>
+<p>字典数据写入</p>
+<pre class="hljs"><code><div>w = csv.DictWriter()
+w.writeheader()
+w.writerow(rows)
+</div></code></pre>
+<h3 id="excel%E6%96%87%E4%BB%B6">Excel文件</h3>
+<blockquote>
+<p>可使用openpyxl库来操作Excel文件</p>
+</blockquote>
+<p>其实个人觉得用pandas可能会更方便一些</p>
+<h3 id="pdf%E6%96%87%E4%BB%B6">Pdf文件</h3>
+<blockquote>
+<p>PyPDF2库实现</p>
+</blockquote>
+<p>可实现：</p>
+<ul>
+<li>读写(仅文本)</li>
+<li>分割</li>
+<li>合并</li>
+<li>文件转换</li>
+</ul>
+<p>读取文件</p>
+<pre class="hljs"><code><div>readFile = open(<span class="hljs-string">'test.pdf'</span>,<span class="hljs-string">'rb'</span>)
+pdfFileReader = PdfFileReader(readFile)
+</div></code></pre>
+<ul>
+<li>getNumPages():计算PDF文件总页数</li>
+<li>getPage(index):检索指定编号的页面</li>
+</ul>
+<p>写文件</p>
+<pre class="hljs"><code><div>writeFile = <span class="hljs-string">'output.pdf'</span>
+pdfFileWriter = PdfFileWriter()
+</div></code></pre>
+<ul>
+<li>.addPage(pageObj):根据每页返回的PageObject,写入到文件</li>
+<li>.addBlankPage():在文件的最后一页后面写入一个空白页,保存到新文件</li>
+</ul>
+<p>文件合并</p>
+<pre class="hljs"><code><div>pdf_merger = PdfFileMerger()
+pdf_merger.append(<span class="hljs-string">'python2018.pdf'</span>)
+pdf_merger.merge(<span class="hljs-number">20</span>, <span class="hljs-string">'insert.pdf'</span>)
+pdf_merger.write(<span class="hljs-string">'merge.pdf'</span>)
+</div></code></pre>
+<h2 id="p43%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">p43面向对象</h2>
+<h3 id="%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%A6%82%E5%BF%B5">对象的概念</h3>
+<p>对象=属性+方法</p>
+<blockquote>
+<p>Python语言动态的特征，使得对象可以随时增加或者删除属性或者方法</p>
+</blockquote>
+<h2 id="p44-%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E8%B0%83%E7%94%A8">p44 类的定义与调用</h2>
+<p>什么是类？</p>
+<blockquote>
+<p>类(class)是对象的模版，封装了对应现实实体的性质和行为</p>
+<p>实例对象(Instance Objects)是类的具体化</p>
+<p>把类比作模具，对象则是用模具制造出来的零件</p>
+</blockquote>
+<p>面向对象编程的三个最重要特征</p>
+<ol>
+<li>封装</li>
+<li>继承</li>
+<li>多态</li>
+</ol>
+<p>Python中约定，类名用大写字母开头(大驼峰)，函数用小写字母开头(小驼峰)，以便区分。</p>
+<h3 id="%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89">类的定义</h3>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> &lt;类名&gt;:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, &lt;参数表&gt;)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> &lt;方法名&gt;<span class="hljs-params">(self, &lt;参数表&gt;)</span>:</span>
+</div></code></pre>
+<p><strong>init</strong>()是一个特殊的函数名，用于根据类的定义创建实例对象，第一个参数必须为self(指对象实例)!</p>
+<p>self：在类内部，实例化过程中传入的所有数据都赋给这个变量</p>
+<h3 id="%E5%AE%9E%E4%BE%8B%E5%8C%96%E5%AF%B9%E8%B1%A1">实例化对象</h3>
+<p><code>obj = &lt;类名&gt;(&lt;参数表&gt;)</code></p>
+<p>使用<code>.</code>访问对象方法</p>
+<h2 id="p45-%E7%B1%BB%E5%AE%9A%E4%B9%89%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E6%96%B9%E6%B3%95">p45 类定义中的特殊方法</h2>
+<blockquote>
+<p>也被称为魔术方法，以两个下划线(__)开始 和结束</p>
+</blockquote>
+<h3 id="%E5%AF%B9%E8%B1%A1%E6%9E%84%E9%80%A0%E5%99%A8">对象构造器</h3>
+<p><strong>init</strong>(self,[...)
+对象的构造器，实例化对象时调用</p>
+<h3 id="%E6%9E%90%E6%9E%84%E5%99%A8">析构器</h3>
+<p><strong>del</strong>(self,[...)
+销毁对象时调用</p>
+<h3 id="%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97">算数运算</h3>
+<ul>
+<li><strong>add</strong>(self,other)：使用+操作符</li>
+<li><strong>sub</strong>(self,other)：使用-操作符</li>
+<li><strong>mul</strong>(self,other)：使用*操作符</li>
+<li><strong>div</strong>(self,other)：使用/操作符</li>
+</ul>
+<p>当左操作数不支持相应的操作时调用反运算</p>
+<ul>
+<li><strong>radd</strong>(self,other)，<strong>rsub</strong>(self,other)</li>
+<li><strong>rmul</strong>(self,other)，<strong>rdiv</strong>(self,other)</li>
+</ul>
+<p>大小比较</p>
+<ul>
+<li><strong>eq</strong>(self,other)：使用==操作符</li>
+<li><strong>ne</strong>(self,other)：使用!=操作符</li>
+<li><strong>lt</strong>(self,other)：使用&lt;操作符</li>
+<li><strong>gt</strong>(self,other)：使用&gt;操作符</li>
+<li><strong>le</strong>(self,other)：使用&lt;=操作符</li>
+<li><strong>ge</strong>(self,other)：使用&gt;=操作符</li>
+</ul>
+<h3 id="%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C">字符串操作</h3>
+<ul>
+<li><strong>str</strong>(self)：自动转换为字符串</li>
+<li><strong>repr</strong>(self)：返回一个用来表示对象的字符串</li>
+<li><strong>len</strong>(self)：返回元素个数</li>
+</ul>
+<h2 id="p46-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%8E%92%E5%BA%8F">p46 自定义对象的排序</h2>
+<blockquote>
+<p>sort 方法默认升序，添加参数reverse=true后变为降序排序</p>
+</blockquote>
+<blockquote>
+<p>sorted() 类似sort 但是原列表内容不变，返回新对象</p>
+</blockquote>
+<p><strong>只有当列表中的所有元素都是同一种类型时，sort()和sorted()才会正常工作</strong></p>
+<h3 id="%E8%87%AA%E5%AE%9A%E4%B9%89%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95">自定义比较方法</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__lt__</span><span class="hljs-params">(self, y)</span>
+</span></div></code></pre>
+<p>其实就类似java重写equals方法</p>
+<ul>
+<li>返回True视为比y“小”，排在前</li>
+<li>返回False视为比y“大”，排在后</li>
+</ul>
+<p>这样之后就可以比较该类中两个对象的大小，并且实现排序</p>
+<h2 id="p47-%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF">p47 类的继承</h2>
+<blockquote>
+<p>如果一个类别A继承自另一个类别B，就把继承者A称为子类，被继承的类B称为父类、基类或超类</p>
+</blockquote>
+<blockquote>
+<p>利用继承可以从已有类中衍生出新的类，添加或修改部分功能新类具有旧类中的各种属性和方法，而不需要进行任何复制</p>
+</blockquote>
+<p>实例</p>
+<p><img src="https://img.qylh.xyz/blog/1655800245978.png" alt=""></p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> &lt;子类名&gt;<span class="hljs-params">(&lt;父类名&gt;)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> &lt;重定义方法&gt;<span class="hljs-params">(self,...)</span>:</span>
+</div></code></pre>
+<p>子类可覆盖（重写）父类的方法</p>
+<p>&lt;对象&gt;.&lt;方法&gt;(&lt;参数&gt;)</p>
+<p>等价于：</p>
+<p>&lt;类&gt;.&lt;方法&gt;(&lt;对象&gt;, &lt;参数&gt;)</p>
+<h2 id="p49-%E4%BE%8B%E5%A4%96%E5%A4%84%E7%90%86">p49 例外处理</h2>
+<blockquote>
+<p>程序的逻辑错误、用户输入不合法等都会引发异常，但它们不会导致程序崩溃可以利用python提供的异常处理机制，在异常出现时及时捕获并从内部消化掉</p>
+</blockquote>
+<blockquote>
+<p>如果希望掌控意外，就需要在可能出错误的地方设置陷阱捕捉错误</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">try</span>:
+    &lt;检测语句&gt;
+<span class="hljs-keyword">except</span> &lt;错误类型&gt; [<span class="hljs-keyword">as</span> e]:
+    &lt;处理异常&gt;
+<span class="hljs-keyword">else</span>:
+    &lt;语句块&gt;
+<span class="hljs-keyword">finally</span>:
+    &lt;语句块&gt;
+</div></code></pre>
+<h2 id="p50%E6%8E%A8%E5%AF%BC%E5%BC%8F">p50推导式</h2>
+<p><img src="https://img.qylh.xyz/blog/1655800941304.png" alt=""></p>
+<blockquote>
+<p>推导式是从一个或者多个迭代器快速简洁地创建数据结构的一种方法将循环和条件判断结合，从而避免语法冗长的代码可以用来生成列表、字典和集合</p>
+</blockquote>
+<h3 id="%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F">列表推导式</h3>
+<p><code>[&lt;表达式&gt; for &lt;变量&gt; in &lt;可迭代对象&gt; if &lt;逻辑条件&gt;]</code></p>
+<h3 id="%E5%AD%97%E5%85%B8%E6%8E%A8%E5%AF%BC%E5%BC%8F">字典推导式</h3>
+<p><code>{&lt;键值表达式&gt;:&lt;元素表达式&gt; for &lt;变量&gt; in &lt;可迭代对象&gt; if &lt;逻辑条件&gt;}</code></p>
+<h3 id="%E9%9B%86%E5%90%88%E6%8E%A8%E5%AF%BC%E5%BC%8F">集合推导式</h3>
+<p><code>{&lt;元素表达式&gt; for &lt;变量&gt; in &lt;可迭代对象&gt; if &lt;逻辑条件&gt;}</code></p>
+<h3 id="%E7%94%9F%E6%88%90%E5%99%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F">生成器推导式</h3>
+<blockquote>
+<p>返回一个生成器对象，但是不马上产生全部元素，仅当用到该元素时才生成，以极大的节省内存</p>
+</blockquote>
+<p><code>(&lt;元素表达式&gt; for &lt;变量&gt; in &lt;可迭代对象&gt; if &lt;逻辑条件&gt;)</code></p>
+<p><img src="https://img.qylh.xyz/blog/1655800964664.png" alt=""></p>
+<h2 id="p51%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0">p51生成器函数</h2>
+<blockquote>
+<p>当推导式比较复杂时，一行表达式无法完成，此时可以定义生成器函数</p>
+</blockquote>
+<p>生成器函数很简单 只是将return 换成了yield</p>
+<p>注意：
+遇到yield时立即返回一个值下一次迭代生成器函数时，从yield语句后的语句继续执行，直到再次yield返回，或终止</p>
+<p><img src="https://img.qylh.xyz/blog/1655801146864.png" alt=""></p>
+<h2 id="p53-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%BA%93-pillow">p53 图像处理库-Pillow</h2>
+<blockquote>
+<p>可实现缩放、裁剪、旋转、滤镜、文字、调色板等等</p>
+</blockquote>
+<h3 id="%E5%9B%BE%E7%89%87%E6%89%93%E5%BC%80">图片打开</h3>
+<p><code>mage.open(&lt;路径+图像名+文件格式&gt;)</code></p>
+<h3 id="%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86">图片处理</h3>
+<h4 id="thumbnail">thumbnail</h4>
+<p>thumbnail(size, Image.ANTIALIAS)
+参数size为一个元组，指定生成缩略图的大小</p>
+<p>直接对内存中的原图进行了修改, 但是修改完后的图片需要保存，处理后的图片不会被拉伸</p>
+<h4 id="filter">filter</h4>
+<p>图片模糊</p>
+<h4 id="%E6%B7%BB%E5%8A%A0%E6%96%87%E6%9C%AC">添加文本</h4>
+<p><img src="https://img.qylh.xyz/blog/1655801370962.png" alt=""></p>
+<h3 id="%E5%9B%BE%E7%89%87%E4%BF%9D%E5%AD%98">图片保存</h3>
+<ul>
+<li>im.show()</li>
+<li>im.save(文件名)</li>
+</ul>
+<h2 id="p54-web%E6%A1%86%E6%9E%B6">p54 web框架</h2>
+<h3 id="%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</h3>
+<ul>
+<li>路由</li>
+<li>模板</li>
+<li>认证和授权</li>
+<li>session</li>
+</ul>
+<blockquote>
+<p>Flask是一种非常容易上手的Python web开发框架，功能强大，支持很多专业Web开发需要的扩展功能</p>
+</blockquote>
+<p>（现在Django用的比较多）</p>
+<h2 id="p55-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB">p55 网络爬虫</h2>
+<blockquote>
+<p>通过向网站发起请求获取资源，提取其中有用的信息</p>
+</blockquote>
+<h3 id="request">request</h3>
+<p>用于发起请求</p>
+<ul>
+<li>requests.request()：构造一个请求</li>
+<li>requests.get()：获取HTML网页</li>
+<li>requests.head()：获取HTML网页头信息</li>
+<li>requests.post()：提交POST请求</li>
+<li>requests.put()：提交PUT请求</li>
+<li>requests.patch()：提交局部修改请求</li>
+<li>requests.delete()：提交删除请求</li>
+<li>requests.options()：获取http请求</li>
+</ul>
+<p>返回Response对象</p>
+<ul>
+<li>.status_code：HTTP请求的返回状态</li>
+<li>.text：HTTP响应内容的字符串形式</li>
+<li>.content：HTTP响应内容的二进制形式</li>
+<li>.encoding：(从HTTP header中)分析响应内容的编码方式</li>
+<li>.apparent_encoding：(从内容中)分析响应内容的编码方式</li>
+</ul>
+<p>可以通过传递header参数来设置请求头</p>
+<p>设置代理： 若网站有IP访问次数限制，可以使用proxies参数来替换代理</p>
+<h3 id="beautiful-soup">Beautiful Soup</h3>
+<p>用于解析HTML</p>
+<p><img src="https://img.qylh.xyz/blog/1655803006868.png" alt=""></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 初始化</span>
+<span class="hljs-keyword">from</span> bs4 <span class="hljs-keyword">import</span> BeautifulSoup
+
+<span class="hljs-comment"># 方法一，直接打开文件</span>
+soup = BeautifulSoup(open(<span class="hljs-string">"index.html"</span>))
+
+<span class="hljs-comment"># 方法二，指定数据</span>
+resp = <span class="hljs-string">"&lt;html&gt;data&lt;/html&gt;"</span>
+soup = BeautifulSoup(resp, <span class="hljs-string">'lxml'</span>)
+
+<span class="hljs-comment"># soup 为 BeautifulSoup 类型对象</span>
+print(type(soup))
+
+</div></code></pre>
+<pre class="hljs"><code><div>soup = BeautifulSoup(resp, <span class="hljs-string">'lxml'</span>)
+
+<span class="hljs-comment"># 返回一个标签名为"a"的Tag</span>
+soup.find(<span class="hljs-string">"a"</span>)
+
+<span class="hljs-comment"># 返回所有tag 列表</span>
+soup.find_all(<span class="hljs-string">"a"</span>)
+
+<span class="hljs-comment">## find_all方法可被简写</span>
+soup(<span class="hljs-string">"a"</span>)
+
+<span class="hljs-comment">#找出所有以b开头的标签</span>
+<span class="hljs-keyword">for</span> tag <span class="hljs-keyword">in</span> soup.find_all(re.compile(<span class="hljs-string">"^b"</span>)):
+    print(tag.name)
+
+<span class="hljs-comment">#找出列表中的所有标签</span>
+soup.find_all([<span class="hljs-string">"a"</span>, <span class="hljs-string">"p"</span>])
+
+<span class="hljs-comment"># 查找标签名为p，class属性为"title"</span>
+soup.find_all(<span class="hljs-string">"p"</span>, <span class="hljs-string">"title"</span>)
+
+<span class="hljs-comment"># 查找属性id为"link2"</span>
+soup.find_all(id=<span class="hljs-string">"link2"</span>)
+
+<span class="hljs-comment"># 查找存在属性id的</span>
+soup.find_all(id=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment">#</span>
+soup.find_all(href=re.compile(<span class="hljs-string">"elsie"</span>), id=<span class="hljs-string">'link1'</span>)
+
+<span class="hljs-comment"># </span>
+soup.find_all(attrs={<span class="hljs-string">"data-foo"</span>: <span class="hljs-string">"value"</span>})
+
+<span class="hljs-comment">#查找标签文字包含"sisters"</span>
+soup.find(string=re.compile(<span class="hljs-string">"sisters"</span>))
+
+<span class="hljs-comment"># 获取指定数量的结果</span>
+soup.find_all(<span class="hljs-string">"a"</span>, limit=<span class="hljs-number">2</span>)
+
+<span class="hljs-comment"># 自定义匹配方法</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">has_class_but_no_id</span><span class="hljs-params">(tag)</span>:</span>
+    <span class="hljs-keyword">return</span> tag.has_attr(<span class="hljs-string">'class'</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> tag.has_attr(<span class="hljs-string">'id'</span>)
+soup.find_all(has_class_but_no_id)
+
+<span class="hljs-comment"># 仅对属性使用自定义匹配方法</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">not_lacie</span><span class="hljs-params">(href)</span>:</span>
+        <span class="hljs-keyword">return</span> href <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> re.compile(<span class="hljs-string">"lacie"</span>).search(href)
+soup.find_all(href=not_lacie)
+
+<span class="hljs-comment"># 调用tag的 find_all() 方法时,Beautiful Soup会检索当前tag的所有子孙节点,如果只想搜索tag的直接子节点,可以使用参数 recursive=False </span>
+
+soup.find_all(<span class="hljs-string">"title"</span>, recursive=<span class="hljs-literal">False</span>)
+
+</div></code></pre>
+<ul>
+<li>find_parents()	所有父辈节点</li>
+<li>find_parent()	第一个父辈节点</li>
+<li>find_next_siblings()	之后的所有兄弟节点</li>
+<li>find_next_sibling()	之后的第一个兄弟节点</li>
+<li>find_previous_siblings()	之前的所有兄弟节点</li>
+<li>find_previous_sibling()	之前的第一个兄弟节点</li>
+<li>find_all_next()	之后的所有元素</li>
+<li>find_next()	之后的第一个元素</li>
+<li>find_all_previous()	之前的所有元素</li>
+<li>find_previous()	之前的第一个元素</li>
+</ul>
+<h2 id="p56%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96">p56数据可视化</h2>
+<h3 id="numpy-%E5%BA%93">Numpy 库</h3>
+<blockquote>
+<p>numpy是Python用于处理大型矩阵的一个速度极快的数学库,很多底层的函数都是用C写的，可以得
+到在普通Python中无法达到的运行速度</p>
+</blockquote>
+<ul>
+<li>矩阵计算
+<ul>
+<li>创建矩阵 a = np.matrix([])</li>
+<li>矩阵求逆 a.I</li>
+<li>矩阵转置 a.T</li>
+<li>矩阵乘法 a*b或np.dot(a,b)</li>
+</ul>
+</li>
+<li>对象属性
+<ul>
+<li>np.shape 数组形状，矩阵则为n行m列</li>
+<li>np.size 对象元素的个数</li>
+<li>np.dtype 指定当前numpy对象的整体数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="matplotlib">matplotlib</h3>
+<blockquote>
+<p>matplotlib是Python的一个绘图库。它包含了大量的工具，可以使用这些工具创建各种图形(基于numpy)</p>
+</blockquote>
+<p>其实类似matlab绘图，可以用seaborn库美化图表</p>
+<p>除此之外，Pyecharts绘制的图片更加精美</p>
+
+</body>
+</html>
